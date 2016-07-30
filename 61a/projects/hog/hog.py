@@ -129,7 +129,10 @@ def select_dice(score, opponent_score):
     multiple of 7, in which case select four-sided dice (Hog Wild).
     """
     # BEGIN PROBLEM 3
-    "*** REPLACE THIS LINE ***"
+    sum = score + opponent_score
+    if (sum % 7 == 0):
+    	return four_sided
+    return six_sided
     # END PROBLEM 3
 
 def max_dice(score, opponent_score):
@@ -138,7 +141,10 @@ def max_dice(score, opponent_score):
     OPPONENT_SCORE ends in a 7, in which case the player can roll at most 1.
     """
     # BEGIN PROBLEM 3
-    "*** REPLACE THIS LINE ***"
+    sum = score + opponent_score
+    if (sum % 10 == 7): # if the sum of the scores ends in 7
+    	return 1 # max number of dice is one
+    return 10 # otherwise, max number of dice roll is ten by default
     # END PROBLEM 3
 
 
