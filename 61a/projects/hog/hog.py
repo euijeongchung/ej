@@ -2,6 +2,7 @@
 
 from dice import four_sided, six_sided, make_test_dice
 from ucb import main, trace, log_current_line, interact
+from math import sqrt
 
 GOAL_SCORE = 100  # The goal of Hog is to score 100 points.
 
@@ -34,12 +35,70 @@ def roll_dice(num_rolls, dice=six_sided):
 
 
 def free_bacon(opponent_score):
-    """Return the points scored from rolling 0 dice (Free Bacon)."""
+    """Return the points scored from rolling 0 dice (Free Bacon).
+
+    >>> free_bacon(7)
+    8
+    >>> free_bacon(11)
+    2
+    >>> free_bacon(12)
+    3
+    >>> free_bacon(10)
+    2
+    """
     # BEGIN PROBLEM 2
-    "*** REPLACE THIS LINE ***"
+    if (opponent_score < 10) : # if opponent score is less than ten
+    	return opponent_score + 1 # return opponent score plus one
+    tenth = opponent_score // 10 # compute tenth digit
+    ones = opponent_score % 10 # compute ones digit
+    return max(tenth, ones) + 1 # otherwise, return one plus maximum of two digits
     # END PROBLEM 2
 
 # Write your prime functions here!
+def is_prime(n):
+	"""Determine whether given number is a prime number
+
+	>>> is_prime(2)
+	True
+	>>> is_prime(1)
+	False
+	>>> is_prime(3)
+	True
+	>>> is_prime(4)
+	False
+	>>> is_prime(7)
+	True
+	>>> is_prime(31)
+	True
+	"""
+	if (n < 2):
+		return False
+	low_root = int(sqrt(n))
+	k = 2
+	while (k <= low_root) :
+		if (n % k == 0) :
+			return False
+		k += 1
+	return True
+
+def next_prime(n):
+	"""Return next prime number higher than n
+
+	>>> next_prime(3)
+	5
+	>>> next_prime(2)
+	3
+	>>> next_prime(7)
+	11
+	>>> next_prime(17)
+	19
+	>>> next_prime(31)
+	37
+	"""
+	n += 1
+	if (is_prime(n)):
+		return n
+	return next_prime(n)
 
 def take_turn(num_rolls, opponent_score, dice=six_sided):
     """Simulate a turn rolling NUM_ROLLS dice, which may be 0 (Free Bacon).
@@ -54,7 +113,14 @@ def take_turn(num_rolls, opponent_score, dice=six_sided):
     assert num_rolls <= 10, 'Cannot roll more than 10 dice.'
     assert opponent_score < 100, 'The game should be over.'
     # BEGIN PROBLEM 2
-    "*** REPLACE THIS LINE ***"
+    total = 0 # total score for the turn
+    if (num_rolls == 0):
+    	total += free_bacon(opponent_score) # free-bacon rule applied
+    else:
+    	total += roll_dice(num_rolls, dice) # otherwise, just role the dice
+    if (is_prime(total)):
+    	return next_prime(total)
+    return total
     # END PROBLEM 2
 
 
