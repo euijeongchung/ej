@@ -18,7 +18,18 @@ def roll_dice(num_rolls, dice=six_sided):
     assert type(num_rolls) == int, 'num_rolls must be an integer.'
     assert num_rolls > 0, 'Must roll at least once.'
     # BEGIN PROBLEM 1
-    "*** REPLACE THIS LINE ***"
+    total = 0 # total score for the turn
+    one_rolled = False # medium to check whether one is rolled during the turn
+    while (num_rolls > 0) : # loop for num_rolls times
+        result = dice() # result of one dice roll
+        if (result == 1) : # if the result is one
+            one_rolled = True # pig out rule applied!
+        else :
+        	total += result # otherwise, add result to total
+        num_rolls -= 1
+    if one_rolled : # if one is rolled during the turn
+    	return 1  # total score for the turn is one
+    return total # otherwise, return total sum of the turn
     # END PROBLEM 1
 
 
