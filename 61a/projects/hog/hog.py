@@ -150,9 +150,22 @@ def max_dice(score, opponent_score):
 
 def is_swap(score):
     """Returns whether the SCORE contains only one unique digit, such as 22.
+
+    >>> is_swap(22)
+    True
+    >>> is_swap(23)
+    False
+    >>> is_swap(44)
+    True
+    >>> is_swap(111)
+    True
+    >>> is_swap(112)
+    False
     """
     # BEGIN PROBLEM 4
-    "*** REPLACE THIS LINE ***"
+    if (score > 100):
+    	hundreds = score % 100
+    
     # END PROBLEM 4
 
 
