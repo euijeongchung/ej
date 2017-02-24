@@ -8,11 +8,11 @@ public class IterationDemo {
 		am.put("hello", 5);
 		am.put("syrups", 10);
 		
-		/*ArrayMap.KeyIterator ami =
+		ArrayMap.KeyIterator ami =
 		   am.new KeyIterator();
 
 		while (ami.hasNext()) {
 		   System.out.println(ami.next());
-		}*/
+		}
     }
 }
