@@ -1,10 +1,19 @@
 import os
+from string import digits
 
-def rename_file():
+def rename_files():
+	# get file names from the folder
 	file_list = os.listdir("/Users/ejchung/ej/programming_foundations_with_python/prank")
+	# save current path
 	saved_path = os.getcwd()
-	print("Current working directory is: " + saved_path)
-	for file in file_list:
-		print(file)
+	# change current file path
+	os.chdir("/Users/ejchung/ej/programming_foundations_with_python/prank")
 
-rename_file()
+	remove_digits = str.maketrans('','', digits)
+	# for each file, rename filename
+	for file_name in file_list:
+		os.rename(file_name, file_name.translate(remove_digits))
+	# change current path back to original
+	os.chdir(saved_path)
+
+rename_files()
